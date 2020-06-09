@@ -7,11 +7,7 @@ use App\User;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,7 +20,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-      $users = User::latest()->simplePaginate(2);
+      $users = User::latest()->paginate(5);
       $user_count = User::count();
         return view('home', compact('users', 'user_count'));
     }
